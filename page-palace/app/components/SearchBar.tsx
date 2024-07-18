@@ -1,8 +1,72 @@
+"use client";
+
+import React, { useState } from "react";
+
 interface SearchBarProps {
   placeholder: string;
 }
 
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed top-0 right-0 w-64 h-screen bg-[#2e3c5c] shadow-md p-4"
+      style={{ transform: `translateX(${isOpen ? 0 : 100}%)` }}
+    >
+      <h2 className="text-lg font-bold mb-4">User Profile</h2>
+      <ul>
+        <li>
+          <a
+            href="#"
+            className="block py-2 px-4 text-gray-600 hover:text-gray-900"
+          >
+            Edit Profile
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            className="block py-2 px-4 text-gray-600 hover:text-gray-900"
+          >
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            className="block py-2 px-4 text-gray-600 hover:text-gray-900"
+          >
+            Logout
+          </a>
+        </li>
+      </ul>
+      <button
+        className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900"
+        onClick={onClose}
+      >
+        ×
+      </button>
+    </div>
+  );
+};
+
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+  const handleUserProfileClick = () => {
+    setSidebarOpen(true);
+  };
+
+  const handleSidebarClose = () => {
+    setSidebarOpen(false);
+  };
+
   return (
     <div className="flex justify-between items-center space-x-4 mb-4">
       <div className="flex items-center space-x-4">
@@ -19,10 +83,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
         <button className="bg-[#86367F] hover:bg-[#df1bcf] text-white font-bold py-2 px-4 rounded-md">
           Add to cart
         </button>
-        <button className="bg-[#F6828C] hover:bg-[#e22434] text-white font-bold py-2 px-4 rounded-md">
+        <button
+          className="bg-[#F6828C] hover:bg-[#e22434] text-white font-bold py-2 px-4 rounded-md"
+          onClick={handleUserProfileClick}
+        >
           UserProfile
         </button>
       </div>
+      <Sidebar isOpen={sidebarOpen} onClose={handleSidebarClose} />
     </div>
   );
 };
