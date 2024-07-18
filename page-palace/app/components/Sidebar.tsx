@@ -102,7 +102,7 @@ const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
   };
 
   return (
-    <div className="bg-[#698acf]  h-screen p-4 w-50">
+    <div className="bg-[#698acf]  h-screen p-4 w-75">
       <nav className="flex items-center justify-start mb-4">
         <img src={logo} alt="Logo" className="w-24 h-24 mr-4" />
         <h1 className="text-2xl text-gray-900 font-serif">Page Palace</h1>
