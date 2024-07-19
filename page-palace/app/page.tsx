@@ -1,4 +1,4 @@
-import UserPage from "./pages/UserPage";
+import UserPage from "./StyledPages/UserPage";
 const Page = () => {
   return (
     <div>
@@ -8,4 +8,3 @@ const Page = () => {
 };
 
 export default Page;
-
