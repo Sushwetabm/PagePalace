@@ -1,13 +1,32 @@
-// pages/api/books.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../app/db';
-
-
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM books');
+    
+    // Extract genre and subgenre from query parameters
+    const genre = req.query.genre as string;
+    const subgenre = req.query.subgenre as string;
+
+    // Build the SQL query dynamically based on the presence of genre and subgenre
+    let query = 'SELECT * FROM books';
+    const queryParams: any[] = [];
+    
+    if (genre || subgenre) {
+      query += ' WHERE';
+      if (genre) {
+        query += ' genre = $1';
+        queryParams.push(genre);
+      }
+      if (subgenre) {
+        if (queryParams.length > 0) query += ' AND';
+        query += ' subgenre = $2';
+        queryParams.push(subgenre);
+      }
+    }
+
+    const result = await client.query(query, queryParams);
 
     // Convert cover_image from binary to Base64
     const books = result.rows.map(book => {

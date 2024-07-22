@@ -4,11 +4,13 @@ import { useState } from "react";
 
 interface SidebarProps {
   logo: string;
+  onFilterChange: (genre: string, subgenre: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
+const Sidebar: React.FC<SidebarProps> = ({ logo, onFilterChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeGenre, setActiveGenre] = useState("");
+  const [activeSubgenre, setActiveSubgenre] = useState("");
 
   const genres = [
     {
@@ -37,7 +39,6 @@ const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
         "Historical Fantasy",
       ],
     },
-
     {
       name: "Romance",
       subgenres: [
@@ -58,7 +59,6 @@ const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
         "Action Thriller",
       ],
     },
-    // Add more genres and subgenres here...
   ];
 
   const handleLogoClick = () => {
@@ -67,6 +67,13 @@ const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
 
   const handleGenreClick = (genreName: string) => {
     setActiveGenre(genreName);
+    setActiveSubgenre(""); // Clear subgenre when genre changes
+    onFilterChange(genreName, ""); // Clear subgenre filter
+  };
+
+  const handleSubgenreClick = (subgenre: string) => {
+    setActiveSubgenre(subgenre);
+    onFilterChange(activeGenre, subgenre);
   };
 
   return (
@@ -104,11 +111,14 @@ const Sidebar: React.FC<SidebarProps> = ({ logo }) => {
                   <ul>
                     {genre.subgenres.map((subgenre, subIndex) => (
                       <li key={subIndex} className="py-2 pl-4">
-                        <Link href={`/books/${genre.name}/${subgenre}`}>
-                          <span className="text-white hover:text-gray-200">
-                            {subgenre}
-                          </span>
-                        </Link>
+                        <button
+                          onClick={() => handleSubgenreClick(subgenre)}
+                          className={`text-white hover:text-gray-200 ${
+                            activeSubgenre === subgenre ? "bg-gray-700" : ""
+                          }`}
+                        >
+                          {subgenre}
+                        </button>
                       </li>
                     ))}
                   </ul>
