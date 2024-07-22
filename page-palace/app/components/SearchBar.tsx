@@ -84,7 +84,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
           className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 text-black focus:ring-blue-500"
         />
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
-          Filter
+          Search
         </button>
       </div>
       <div className="flex items-center space-x-4">
