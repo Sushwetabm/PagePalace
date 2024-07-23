@@ -1,6 +1,8 @@
+// app/components/SearchBar.tsx
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface SearchBarProps {
   placeholder: string;
@@ -57,8 +59,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 };
 
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
   const handleUserProfileClick = () => {
     setSidebarOpen(true);
@@ -71,6 +74,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
     // Implement search functionality here, e.g., filtering books
+  };
+
+  const handleGoToCartClick = () => {
+    router.push("/CartPage");
   };
 
   return (
@@ -88,7 +95,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
         </button>
       </div>
       <div className="flex items-center space-x-4">
-        <button className="bg-[#86367F] hover:bg-[#df1bcf] text-white font-bold py-2 px-4 rounded-md">
+        <button
+          className="bg-[#86367F] hover:bg-[#df1bcf] text-white font-bold py-2 px-4 rounded-md"
+          onClick={handleGoToCartClick}
+        >
           Go to cart
         </button>
         <button
