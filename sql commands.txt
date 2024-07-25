@@ -1,0 +1,339 @@
+-- Database: PagePalaceDB
+
+-- DROP DATABASE IF EXISTS "PagePalaceDB";
+
+CREATE DATABASE "PagePalaceDB"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_India.1252'
+    LC_CTYPE = 'English_India.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+
+CREATE TABLE books (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(100) NOT NULL,
+  publisher VARCHAR(100),
+  publication_date DATE,
+  isbn VARCHAR(20),
+  genre VARCHAR(50),
+  description TEXT,
+  cover_image BYTEA,
+  pages INTEGER,
+  language VARCHAR(50),
+  edition VARCHAR(50),
+  price NUMERIC(10, 2),
+  stock_quantity INTEGER,
+  status VARCHAR(20)
+)
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'To Kill a Mockingbird', 'Harper Lee', 'J.B. Lippincott & Co.', '1960-07-11', '9780061120084', 'Fiction', 'A classic novel about racial injustice in the Deep South.',
+  pg_read_binary_file('E:/images/cover1.webp'), 281, 'English', 'First Edition', 15.99, 10, 'Available'
+);
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Great Gatsby', 'F. Scott Fitzgerald', 'Charles Scribner''s Sons', '1925-04-10', '9780743273565', 'Fiction', 'A novel about the American Dream in the Roaring Twenties.',
+  pg_read_binary_file('E:/images/cover2.webp'), 218, 'English', 'Reprint Edition', 12.99, 15, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  '1984', 'George Orwell', 'Secker and Warburg', '1949-06-08', '9780451524935', 'Science Fiction', 'A dystopian novel about government surveillance and control.',
+  pg_read_binary_file('E:/images/cover3.webp'), 328, 'English', 'Reprint Edition', 10.99, 20, 'Available'
+);
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Hunger Games', 'Suzanne Collins', 'Scholastic Press', '2008-09-14', '9780439023528', 'Science Fiction', 'A dystopian novel about a deadly game of survival.',
+  pg_read_binary_file('E:/images/cover5.jpg'), 384, 'English', 'First Edition', 14.99, 12, 'Available'
+);
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Pride and Prejudice', 'Jane Austen', 'T. Egerton', '1813-01-28', '9780486280511', 'Romance', 'A classic romance novel about love and social class.',
+  pg_read_binary_file('E:/images/cover4.jpg'), 320, 'English', 'Reprint Edition', 9.99, 25, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Company', '1951-07-16', '9780316769174', 'Fiction', 'A coming-of-age novel about teenage angst and alienation.',
+  pg_read_binary_file('E:/images/cover6.webp'), 272, 'English', 'Reprint Edition', 11.99, 18, 'Available'
+);
+
+
+-- Book 7
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Lord of the Rings', 'J.R.R. Tolkien', 'Allen & Unwin', '1954-07-29', '9780261102217', 'Fantasy', 'A high fantasy novel about a quest to destroy the One Ring.',
+  pg_read_binary_file('E:/images/cover7.jpg'), 1216, 'English', 'Reprint Edition', 24.99, 10, 'Available'
+);
+
+-- Book 8
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Picture of Dorian Gray', 'Oscar Wilde', 'Lippincott''s Monthly Magazine', '1890-07-20', '9780486280542', 'Fiction', 'A philosophical novel about the nature of beauty and morality.',
+  pg_read_binary_file('E:/images/cover8.jpg'), 272, 'English', 'Reprint Edition', 10.99, 15, 'Available'
+);
+
+-- Book 9
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Da Vinci Code', 'Dan Brown', 'Doubleday', '2003-03-18', '9780385504201', 'Mystery', 'A thriller novel about a murder at the Louvre and a centuries-old secret.',
+  pg_read_binary_file('E:/images/cover9.jpg'), 454, 'English', 'First Edition', 16.99, 11, 'Available'
+);
+
+-- Book 10
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', '1937-09-21', '9780007105057', 'Fantasy', 'A high fantasy novel about a hobbit named Bilbo Baggins and his journey to reclaim the Lonely Mountain.',
+  pg_read_binary_file('E:/images/cover10.jpg'), 304, 'English', 'Reprint Edition', 12.99, 18, 'Available'
+);
+
+-- Book 11
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Adventures of Huckleberry Finn', 'Mark Twain', 'C. Webster', '1884-02-18', '9780486273511', 'Fiction', 'A classic novel about a young boys adventures on the Mississippi River.',
+  pg_read_binary_file('E:/images/cover11.jpg'), 224, 'English', 'Reprint Edition', 11.99, 15, 'Available'
+);
+
+
+
+
+-- Book 12
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Stand', 'Stephen King', 'Doubleday', '1978-09-16', '9780307339315', 'Horror', 'A post-apocalyptic novel about a deadly virus and the struggle for survival.',
+  pg_read_binary_file('E:/images/cover12.jpg'), 1152, 'English', 'Reprint Edition', 19.99, 8, 'Available'
+);
+
+-- Book 13
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Giver', 'Lois Lowry', 'Houghton Mifflin', '1993-04-26', '9780395645663', 'Science Fiction', 'A dystopian novel about a society where memories are erased and emotions are suppressed.',
+  pg_read_binary_file('E:/images/cover13.jpg'), 240, 'English', 'First Edition', 12.99, 12, 'Available'
+);
+
+select USER;
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Giver', 'Lois Lowry', 'Houghton Mifflin', '1993-04-26', '9780395645663', 'Science Fiction', 'A dystopian novel about a society where memories are erased and emotions are suppressed.',
+  pg_read_binary_file('E:/images/cover13.jpg'), 240, 'English', 'First Edition', 12.99, 12, 'Available'
+);
+
+
+-- Picture Books
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Where the Wild Things Are', 'Maurice Sendak', 'HarperCollins', '1963-04-19', '9780060254926', 'Picture Books', 'A story about a young boy named Max who travels to a land of wild creatures.',
+  pg_read_binary_file('E:/images/cover14.jpg'), 48, 'English', 'First Edition', 18.95, 20, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Very Hungry Caterpillar', 'Eric Carle', 'Philomel Books', '1969-06-03', '9780399208539', 'Picture Books', 'A caterpillar eats through a variety of foods before becoming a butterfly.',
+  pg_read_binary_file('E:/images/cover15.jpg'), 32, 'English', 'First Edition', 21.99, 15, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Goodnight Moon', 'Margaret Wise Brown', 'HarperCollins', '1947-09-03', '9780060775858', 'Picture Books', 'A bedtime story about saying goodnight to everything in the room.',
+  pg_read_binary_file('E:/images/cover16.jpg'), 32, 'English', 'First Edition', 17.99, 25, 'Available'
+);
+
+
+
+-- Early Readers
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Green Eggs and Ham', 'Dr. Seuss', 'Random House', '1960-08-12', '9780394800165', 'Early Readers', 'A humorous tale about trying new things.',
+  pg_read_binary_file('E:/images/cover17.jpg'), 62, 'English', 'First Edition', 18.99, 20, 'Available'
+);
+
+
+
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Frog and Toad Are Friends', 'Arnold Lobel', 'HarperCollins', '1970-04-12', '9780060239572', 'Early Readers', 'The adventures of two best friends, Frog and Toad.',
+  pg_read_binary_file('E:/images/cover18.jpg'), 64, 'English', 'First Edition', 17.99, 15, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Amelia Bedelia', 'Peggy Parish', 'HarperCollins', '1963-09-25', '9780064441551', 'Early Readers', 'A literal-minded housekeeper causes chaos with her interpretations of instructions.',
+  pg_read_binary_file('E:/images/cover19.jpg'), 64, 'English', 'First Edition', 16.99, 22, 'Available'
+);
+
+
+
+-- Middle Grade
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Harry Potter and the Sorcerers Stone', 'J.K. Rowling', 'Scholastic', '1997-09-01', '9780590353427', 'Middle Grade', 'A young boy discovers he is a wizard and attends a magical school.',
+  pg_read_binary_file('E:/images/cover20.jpg'), 309, 'English', 'First Edition', 24.99, 30, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Percy Jackson & the Olympians: The Lightning Thief', 'Rick Riordan', 'Disney-Hyperion', '2005-06-28', '9780786838653', 'Middle Grade', 'A boy discovers he is a demigod and goes on a quest to prevent a war among the gods.',
+  pg_read_binary_file('E:/images/cover21.jpg'), 377, 'English', 'First Edition', 22.99, 25, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Charlottes Web', 'E.B. White', 'HarperCollins', '1952-10-15', '9780064400557', 'Middle Grade', 'A pig named Wilbur befriends a spider named Charlotte who helps save his life.',
+  pg_read_binary_file('E:/images/cover22.jpg'), 192, 'English', 'First Edition', 19.99, 18, 'Available'
+);
+
+
+-- Young Adult
+
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Divergent', 'Veronica Roth', 'Katherine Tegen Books', '2011-04-25', '9780062024021', 'Young Adult', 'A girl discovers she does not fit into any one faction in a divided society.',
+  pg_read_binary_file('E:/images/cover23.jpg'), 487, 'English', 'First Edition', 22.99, 25, 'Available'
+);
+
+
+
+
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Fault in Our Stars', 'John Green', 'Dutton Books', '2012-01-10', '9780525478812', 'Young Adult', 'A girl with cancer falls in love with a boy from her support group.',
+  pg_read_binary_file('E:/images/cover24.jpg'), 313, 'English', 'First Edition', 21.99, 18, 'Available'
+);
+-- Epic Fantasy
+
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'The Name of the Wind', 'Patrick Rothfuss', 'DAW Books', '2007-03-27', '9780756404741', 'Epic Fantasy', 'A story about a gifted young man who grows up to become a legend.',
+  pg_read_binary_file('E:/images/cover26.jpg'), 662, 'English', 'First Edition', 22.99, 15, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'A Game of Thrones', 'George R.R. Martin', 'Bantam Books', '1996-08-06', '9780553103540', 'Epic Fantasy', 'Noble families vie for control of the Iron Throne in a medieval fantasy world.',
+  pg_read_binary_file('E:/images/cover26.jpg'), 694, 'English', 'First Edition', 24.99, 22, 'Available'
+);
+
+-- Urban Fantasy
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Moon Called', 'Patricia Briggs', 'Ace Books', '2006-01-31', '9780441013815', 'Urban Fantasy', 'A mechanic who can shift into a coyote finds herself entangled with supernatural beings.',
+  pg_read_binary_file('E:/images/cover27.jpg'), 288, 'English', 'First Edition', 19.99, 20, 'Available'
+);
+
+INSERT INTO books (
+  title, author, publisher, publication_date, isbn, genre, description, cover_image, pages, language, edition, price, stock_quantity, status
+) VALUES (
+  'Storm Front', 'Jim Butcher', 'Roc Books', '2000-04-01', '9780451457813', 'Urban Fantasy', 'A wizard detective solves supernatural crimes in Chicago.',
+  pg_read_binary_file('E:/images/cover28.jpg'), 322, 'English', 'First Edition', 21.99, 15, 'Available'
+);
+
+ALTER TABLE books ADD COLUMN subgenre VARCHAR(255);
+-- Fiction -> None (needs to be updated to a specific subgenre)
+UPDATE books SET genre = 'Fiction', subgenre = 'Literary Fiction' WHERE title IN (
+  'To Kill a Mockingbird',
+  'The Great Gatsby',
+  'The Catcher in the Rye',
+  'The Picture of Dorian Gray',
+  'The Adventures of Huckleberry Finn'
+);
+
+-- Science Fiction
+UPDATE books SET genre = 'Science Fiction', subgenre = 'Dystopian' WHERE title IN (
+  '1984',
+  'The Hunger Games',
+  'The Giver'
+);
+
+-- Romance
+UPDATE books SET genre = 'Romance', subgenre = 'Classic Romance' WHERE title = 'Pride and Prejudice';
+
+-- Fantasy
+UPDATE books SET genre = 'Fantasy', subgenre = 'High Fantasy' WHERE title IN (
+  'The Lord of the Rings',
+  'The Hobbit'
+);
+
+-- Mystery
+UPDATE books SET genre = 'Mystery', subgenre = 'Thriller' WHERE title = 'The Da Vinci Code';
+
+-- Horror
+UPDATE books SET genre = 'Horror', subgenre = 'Post-Apocalyptic' WHERE title = 'The Stand';
+
+-- Picture Books
+UPDATE books SET genre = 'Children''s', subgenre = 'Picture Books' WHERE title IN (
+  'Where the Wild Things Are',
+  'The Very Hungry Caterpillar',
+  'Goodnight Moon'
+);
+
+-- Early Readers
+UPDATE books SET genre = 'Children''s', subgenre = 'Early Readers' WHERE title IN (
+  'Green Eggs and Ham',
+  'Frog and Toad Are Friends',
+  'Amelia Bedelia'
+);
+
+-- Middle Grade
+UPDATE books SET genre = 'Children''s', subgenre = 'Middle Grade' WHERE title IN (
+  'Harry Potter and the Sorcerers Stone',
+  'Percy Jackson & the Olympians: The Lightning Thief',
+  'Charlottes Web'
+);
+
+-- Young Adult
+UPDATE books SET genre = 'Young Adult', subgenre = 'Dystopian' WHERE title IN (
+  'Divergent',
+  'The Fault in Our Stars'
+);
+
+-- Epic Fantasy
+UPDATE books SET genre = 'Fantasy', subgenre = 'Epic Fantasy' WHERE title IN (
+  'The Name of the Wind',
+  'A Game of Thrones'
+);
+
+-- Urban Fantasy
+UPDATE books SET genre = 'Fantasy', subgenre = 'Urban Fantasy' WHERE title IN (
+  'Moon Called',
+  'Storm Front'
+);
+select * from books;
